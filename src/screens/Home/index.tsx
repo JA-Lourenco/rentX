@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { CarCard } from '../../components/CarCard';
+
 import { StatusBar } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import LogoSvg from '../../assets/logo.svg'
@@ -32,6 +34,8 @@ export function Home(){
                     </CarAmount>
                 </HeaderContent>
             </Header>
+
+            <CarCard />
         </Container>
     )
 }
