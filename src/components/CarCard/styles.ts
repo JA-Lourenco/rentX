@@ -57,5 +57,6 @@ export const Gas = styled.View`
 `
 
 export const CarImage = styled.Image`
-
+    width: 160px;
+    height: 92px;
 `
