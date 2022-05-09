@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import GasIcon from '../../assets/gasoline.svg'
 
@@ -16,6 +16,7 @@ import {
 } from './styles';
 
 interface CarData {
+    id: string
     brand: string
     name: string
     rent: {
@@ -25,7 +26,7 @@ interface CarData {
     thumbnail: string
 }
 
-interface CarCardProps {
+export interface CarCardProps {
     data: CarData
 }
 
