@@ -1,10 +1,12 @@
 import React from 'react';
 
 import { BackButton } from '../../components/BackButton';
+import { ImageSlider } from '../../components/ImageSlider';
 
 import {
     Container,
-    CarImageSlider,
+    Header,
+    CarImagesContainer,
     CarDescription,
     Info,
     Brand,
@@ -17,15 +19,18 @@ import {
 export function CarDetails(){
     return (
         <Container>
-            <BackButton 
-                onPress={() => {}}
-            />
+            <Header>
+                <BackButton 
+                    onPress={() => {}}
+                />
+            </Header>
 
-            <CarImageSlider
-                source={{ uri: 'https://www.pikpng.com/pngl/b/223-2238897_mad-max-apocalypse-cool-cars-vehicle-mad-max.png' }}
-                resizeMode= 'contain'
-            />
-          
+            <CarImagesContainer>
+                <ImageSlider 
+                    imagesUrl={['https://www.pikpng.com/pngl/b/223-2238897_mad-max-apocalypse-cool-cars-vehicle-mad-max.png']} 
+                />
+            </CarImagesContainer>
+
             <CarDescription>
                 <Info>
                     <Brand>MAD MAX</Brand>

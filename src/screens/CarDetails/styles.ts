@@ -1,15 +1,21 @@
 import styled from 'styled-components/native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+
 
 export const Container = styled.View`
     flex: 1;
     background-color: ${({ theme }) => theme.colors.background_secondary};
 `;
 
-export const CarImageSlider = styled.Image`
-    width: 280px;
-    height: 132px;
-    margin: 15px 48px 0;
+export const Header = styled.View`
+    position: absolute;
+    margin-top: ${getStatusBarHeight() + 31}px;
+    margin-left: 24px;
+`
+
+export const CarImagesContainer = styled.View`
+    margin-top: ${getStatusBarHeight() + 40}px;
 `
 
 export const CarDescription = styled.View`
