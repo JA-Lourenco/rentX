@@ -1,7 +1,8 @@
 import React from 'react';
 
 // import { Home } from './src/screens/Home';
-import { CarDetails } from './src/screens/CarDetails';
+// import { CarDetails } from './src/screens/CarDetails';
+import { Scheduling } from './src/screens/Scheduling';
 
 import { ThemeProvider } from 'styled-components';
 
@@ -36,7 +37,8 @@ export default function App() {
   return (
     <ThemeProvider theme={ theme }>
       {/* <Home /> */}
-      <CarDetails />
+      {/* <CarDetails /> */}
+      <Scheduling />
     </ThemeProvider>
   );
 }
