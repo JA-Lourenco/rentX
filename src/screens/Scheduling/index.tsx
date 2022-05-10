@@ -2,6 +2,7 @@ import React from 'react';
 
 import { BackButton } from '../../components/BackButton';
 import { Button } from '../../components/Button';
+import { Calendar } from '../../components/Calendar';
 
 import { useTheme } from 'styled-components';
 import { StatusBar } from 'react-native';
@@ -63,7 +64,7 @@ export function Scheduling(){
             </Header>
 
             <Content>
-
+                <Calendar />
             </Content>
 
             <Footer>
