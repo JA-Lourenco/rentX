@@ -3,6 +3,7 @@ import React from 'react';
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
 import { Accessory } from '../../components/Accessory'
+import { Button } from '../../components/Button';
 
 import speedSvg from '../../assets/speed.svg'
 import accelerationSvg from '../../assets/acceleration.svg'
@@ -24,7 +25,8 @@ import {
     Price,
     Details,
     Acessories,
-    About
+    About,
+    Footer
 } from './styles';
 
 export function CarDetails(){
@@ -92,7 +94,28 @@ export function CarDetails(){
                 <About>
                     Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar.
                 </About>
+                <About>
+                    Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar.
+                </About>
+                <About>
+                    Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar.
+                </About>
+                <About>
+                    Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar.
+                </About>
+                <About>
+                    Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar.
+                </About>
+                <About>
+                    Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar.
+                </About>
             </Details>
+
+            <Footer>
+                <Button 
+                    title='Escolher período do aluguel'
+                />
+            </Footer>
 
 
         </Container>
