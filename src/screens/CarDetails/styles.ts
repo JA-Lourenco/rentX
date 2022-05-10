@@ -19,7 +19,7 @@ export const CarImagesContainer = styled.View`
 `
 
 export const CarDescription = styled.View`
-    padding: 35px 24px 16px;
+    margin: 35px 24px 0;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -33,6 +33,7 @@ export const Brand = styled.Text`
     font-size: ${RFValue(10)}px;
     font-family: ${({ theme }) => theme.fonts.secondary_500};
     color: ${({ theme }) => theme.colors.text_opaque};
+    text-transform: uppercase;
 `
 
 export const Name = styled.Text`
@@ -49,10 +50,37 @@ export const Period = styled.Text`
     font-size: ${RFValue(10)}px;
     font-family: ${({ theme }) => theme.fonts.secondary_500};
     color: ${({ theme }) => theme.colors.text_opaque};
+    text-transform: uppercase;
 `
 
 export const Price = styled.Text`
     font-size: ${RFValue(25)}px;
     font-family: ${({ theme }) => theme.fonts.secondary_500};
     color: ${({ theme }) => theme.colors.main};
+`
+
+export const Details = styled.ScrollView.attrs({
+    contentContainerStyles: {
+        alignItems: 'center',
+    },
+    showsVerticalScrollIndicator: false
+})`
+    margin: 16px 16px 0;
+`
+
+export const Acessories = styled.View`
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+`
+
+export const About = styled.Text`
+    font-size: ${RFValue(15)}px;
+    font-family: ${({ theme }) => theme.fonts.primary_400};
+    color: ${({ theme }) => theme.colors.text};
+    line-height: ${RFValue(25)}px;
+    text-align: justify;
+    margin-top: 16px;
+    padding: 0 8px;
 `
