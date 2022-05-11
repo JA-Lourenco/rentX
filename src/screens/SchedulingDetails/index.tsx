@@ -15,6 +15,8 @@ import peopleSvg from '../../assets/people.svg'
 import { RFValue } from 'react-native-responsive-fontsize';
 import Feather from 'react-native-vector-icons/Feather'
 import { useTheme } from 'styled-components';
+import { useNavigation } from '@react-navigation/native';
+
 
 import {
     Container,
@@ -44,6 +46,12 @@ import {
 
 export function SchedulingDetails(){
     const theme = useTheme() 
+
+    const navigation = useNavigation<any>()
+
+    function handleConfirmRentalSummary() {
+        navigation.navigate('SchedulingComplete')
+    }
 
     return (
         <Container>
@@ -148,6 +156,7 @@ export function SchedulingDetails(){
                 <Button 
                     title='Alugar agora'
                     color={theme.colors.success}
+                    onPress={handleConfirmRentalSummary}
                 />
             </Footer>
 

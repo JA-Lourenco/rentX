@@ -8,11 +8,12 @@ import {
 
 interface ConfirmButtonProps extends TouchableOpacityProps {
     title: string
+    onPress: () => void
 }
 
-export function ConfirmButton({ title }: ConfirmButtonProps){
+export function ConfirmButton({ title, ...rest }: ConfirmButtonProps){
     return (
-        <Container>
+        <Container {...rest}>
             <Title>{title}</Title>
         </Container>
     )

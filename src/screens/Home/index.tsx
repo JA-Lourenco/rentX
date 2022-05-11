@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { CarCard } from '../../components/CarCard';
 
+import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import LogoSvg from '../../assets/logo.svg'
@@ -89,6 +90,12 @@ export function Home(){
         },
     ])
 
+    const navigation = useNavigation<any>()
+
+    function handleCarDetails() {
+        navigation.navigate('CarDetails')
+    }
+
     return (
         <Container>
             <StatusBar 
@@ -113,7 +120,7 @@ export function Home(){
             <CarList 
                 data={carData}
                 keyExtractor={ item => item.id }
-                renderItem={({ item }) => <CarCard data={item} />}
+                renderItem={({ item }) => <CarCard data={item} onPress={handleCarDetails} />}
             />
 
         </Container>

@@ -8,7 +8,7 @@ import {
 interface ButtonProps {
     title: string
     color?: string
-    // onPress: () => void
+    onPress: () => void
 }
 
 export function Button({

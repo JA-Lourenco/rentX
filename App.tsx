@@ -1,10 +1,6 @@
 import React from 'react';
 
-// import { Home } from './src/screens/Home';
-// import { CarDetails } from './src/screens/CarDetails';
-// import { Scheduling } from './src/screens/Scheduling';
-// import { SchedulingDetails } from './src/screens/SchedulingDetails';
-import { SchedulingComplete } from './src/screens/SchedulingComplete';
+import { Routes } from './src/Routes/intex';
 
 import { ThemeProvider } from 'styled-components';
 
@@ -38,10 +34,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={ theme }>
-      {/* <Home /> */}
-      {/* <CarDetails /> */}
-      {/* <SchedulingDetails /> */}
-      <SchedulingComplete />
+      <Routes />
     </ThemeProvider>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { TouchableOpacityProps } from 'react-native';
 
 import GasIcon from '../../assets/gasoline.svg'
 
@@ -15,7 +16,7 @@ import {
     CarImage
 } from './styles';
 
-interface CarData {
+export interface CarData {
     id: string
     brand: string
     name: string
@@ -26,13 +27,13 @@ interface CarData {
     thumbnail: string
 }
 
-export interface CarCardProps {
+interface CarCardProps extends TouchableOpacityProps {
     data: CarData
 }
 
-export function CarCard({ data }: CarCardProps){
+export function CarCard({ data, ...rest }: CarCardProps){
     return (
-        <Container>
+        <Container {...rest}>
             <CarDescription>
                 <Brand>{data.brand}</Brand>
 
