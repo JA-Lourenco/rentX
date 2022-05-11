@@ -3,7 +3,8 @@ import React from 'react';
 // import { Home } from './src/screens/Home';
 // import { CarDetails } from './src/screens/CarDetails';
 // import { Scheduling } from './src/screens/Scheduling';
-import { SchedulingDetails } from './src/screens/SchedulingDetails';
+// import { SchedulingDetails } from './src/screens/SchedulingDetails';
+import { SchedulingComplete } from './src/screens/SchedulingComplete';
 
 import { ThemeProvider } from 'styled-components';
 
@@ -39,7 +40,8 @@ export default function App() {
     <ThemeProvider theme={ theme }>
       {/* <Home /> */}
       {/* <CarDetails /> */}
-      <SchedulingDetails />
+      {/* <SchedulingDetails /> */}
+      <SchedulingComplete />
     </ThemeProvider>
   );
 }
