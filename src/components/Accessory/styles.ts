@@ -2,8 +2,9 @@ import styled from 'styled-components/native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 export const Container = styled.View`
-    width: 109px;
-    height: 92px;
+    flex: 1;
+    min-width: 26%;
+    padding: 16px;
     background-color: ${({ theme }) => theme.colors.background_primary};
     justify-content: center;
     align-items: center;
