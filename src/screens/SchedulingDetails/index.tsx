@@ -16,7 +16,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import Feather from 'react-native-vector-icons/Feather'
 import { useTheme } from 'styled-components';
 import { useNavigation } from '@react-navigation/native';
-
+import { StatusBar } from 'react-native';
 
 import {
     Container,
@@ -55,6 +55,12 @@ export function SchedulingDetails(){
 
     return (
         <Container>
+            <StatusBar 
+                barStyle='dark-content'
+                backgroundColor='transparent'
+                translucent
+            />
+
             <Header>
                 <BackButton 
                     onPress={() => {}}

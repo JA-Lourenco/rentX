@@ -6,6 +6,7 @@ import { Accessory } from '../../components/Accessory'
 import { Button } from '../../components/Button';
 
 import { useNavigation } from '@react-navigation/native';
+import { StatusBar } from 'react-native';
 
 import speedSvg from '../../assets/speed.svg'
 import accelerationSvg from '../../assets/acceleration.svg'
@@ -40,6 +41,12 @@ export function CarDetails(){
 
     return (
         <Container>
+            <StatusBar 
+                barStyle='dark-content'
+                backgroundColor='transparent'
+                translucent
+            />
+
             <Header>
                 <BackButton 
                     onPress={() => {}}

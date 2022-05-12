@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+import api from '../../services/api'
+import { CarDTO } from '../../dtos/CarDTO'
 
 import { CarCard } from '../../components/CarCard';
 
@@ -15,6 +18,7 @@ import {
     CarList
 } from './styles'
 
+
 export interface CarData {
     id: string
     brand: string
@@ -27,74 +31,29 @@ export interface CarData {
 }
 
 export function Home(){
-    const [carData, setCarData] = useState<CarData[]>([
-        {   
-            id: '1',
-            brand: 'MAD MAX',
-            name: 'Interceptor',
-            rent: {
-                period: 'AO DIA',
-                price: 120
-            },
-            thumbnail: 'https://www.pikpng.com/pngl/b/223-2238897_mad-max-apocalypse-cool-cars-vehicle-mad-max.png'
-        },
-        {   
-            id: '2',
-            brand: 'MAD MAX',
-            name: 'Peacemaker',
-            rent: {
-                period: 'AO DIA',
-                price: 200
-            },
-            thumbnail: 'https://hips.hearstapps.com/autoweek/assets/s3fs-public/car4.png?resize=480:*'
-        },
-        {   
-            id: '3',
-            brand: 'MAD MAX',
-            name: 'Magnum Opus',
-            rent: {
-                period: 'AO DIA',
-                price: 310
-            },
-            thumbnail: 'https://i.pinimg.com/originals/78/cb/c4/78cbc468a0c82d943d9ea428d27d7a57.png'
-        },
-        {   
-            id: '4',
-            brand: 'MAD MAX',
-            name: 'Interceptor',
-            rent: {
-                period: 'AO DIA',
-                price: 120
-            },
-            thumbnail: 'https://www.pikpng.com/pngl/b/223-2238897_mad-max-apocalypse-cool-cars-vehicle-mad-max.png'
-        },
-        {   
-            id: '5',
-            brand: 'MAD MAX',
-            name: 'Peacemaker',
-            rent: {
-                period: 'AO DIA',
-                price: 200
-            },
-            thumbnail: 'https://hips.hearstapps.com/autoweek/assets/s3fs-public/car4.png?resize=480:*'
-        },
-        {   
-            id: '6',
-            brand: 'MAD MAX',
-            name: 'Magnum Opus',
-            rent: {
-                period: 'AO DIA',
-                price: 310
-            },
-            thumbnail: 'https://i.pinimg.com/originals/78/cb/c4/78cbc468a0c82d943d9ea428d27d7a57.png'
-        },
-    ])
-
+    const [cars, setCars] = useState<CarDTO[]>([])
+    const [loading, setLoading] = useState(true)
     const navigation = useNavigation<any>()
 
     function handleCarDetails() {
         navigation.navigate('CarDetails')
     }
+
+    useEffect(() => {
+        async function fetchCars() {
+            try {
+                const response = await api.get('/cars')
+                setCars(response.data)
+                
+            } catch (error) {
+                console.log('Screen: Home\nfunction:fetchCars\nerror', error)
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchCars()
+    }, [])
 
     return (
         <Container>
@@ -118,7 +77,7 @@ export function Home(){
             </Header>
 
             <CarList 
-                data={carData}
+                data={cars}
                 keyExtractor={ item => item.id }
                 renderItem={({ item }) => <CarCard data={item} onPress={handleCarDetails} />}
             />
