@@ -4,6 +4,7 @@ import api from '../../services/api'
 import { CarDTO } from '../../dtos/CarDTO'
 
 import { CarCard } from '../../components/CarCard';
+import { Load } from '../../components/Load';
 
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
@@ -76,11 +77,15 @@ export function Home(){
                 </HeaderContent>
             </Header>
 
-            <CarList 
-                data={cars}
-                keyExtractor={ item => item.id }
-                renderItem={({ item }) => <CarCard data={item} onPress={handleCarDetails} />}
-            />
+            {
+                loading ? <Load /> :
+
+                <CarList 
+                    data={cars}
+                    keyExtractor={ item => item.id }
+                    renderItem={({ item }) => <CarCard data={item} onPress={handleCarDetails} />}
+                />
+            }
 
         </Container>
     )
