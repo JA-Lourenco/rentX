@@ -1,22 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
 import { Accessory } from '../../components/Accessory'
 import { Button } from '../../components/Button';
 
-import speedSvg from '../../assets/speed.svg'
-import accelerationSvg from '../../assets/acceleration.svg'
-import forceSvg from '../../assets/force.svg'
-import gasolineSvg from '../../assets/gasoline.svg'
-import exchangeSvg from '../../assets/exchange.svg'
-import peopleSvg from '../../assets/people.svg'
+import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
 
 import { RFValue } from 'react-native-responsive-fontsize';
 import Feather from 'react-native-vector-icons/Feather'
 import { useTheme } from 'styled-components';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
+import { CarDTO } from '../../dtos/CarDTO';
+import { format } from 'date-fns';
+import { getPlatformDate } from '../../utils/getPlatformDate';
 
 import {
     Container,
@@ -30,7 +28,7 @@ import {
     Period,
     Price,
     Details,
-    Acessories,
+    Accessories,
     RentalPeriod,
     CalendarIcon,
     DateInfo,
@@ -44,10 +42,26 @@ import {
     Footer
 } from './styles';
 
+interface RentalPeriod {
+    start: string
+    end: string
+}
+
+interface Params {
+    car: CarDTO
+    dates: string[]
+}
+
 export function SchedulingDetails(){
+    const [rentalPeriod, setRentalPeriod] = useState<RentalPeriod>({} as RentalPeriod)
+
     const theme = useTheme() 
 
     const navigation = useNavigation<any>()
+    const route = useRoute()
+    const { car, dates } = route.params as Params
+
+    const rentTotal = Number(dates.length * car.rent.price)
 
     function handleConfirmRentalSummary() {
         navigation.navigate('SchedulingComplete')
@@ -56,6 +70,13 @@ export function SchedulingDetails(){
     function handleGoBack() {
         navigation.goBack()
     }
+
+    useEffect(() => {
+        setRentalPeriod({
+            start: format(getPlatformDate(new Date(dates[0])), 'dd/MM/yyyy'),
+            end:format(getPlatformDate(new Date(dates[dates.length - 1])), 'dd/MM/yyyy')
+        })
+    }, [])
 
     return (
         <Container>
@@ -73,56 +94,37 @@ export function SchedulingDetails(){
 
             <CarImagesContainer>
                 <ImageSlider 
-                    imagesUrl={['https://www.pikpng.com/pngl/b/223-2238897_mad-max-apocalypse-cool-cars-vehicle-mad-max.png']} 
+                    imagesUrl={ car.photos } 
                 />
             </CarImagesContainer>
 
             <CarDescription>
                 <Info>
-                    <Brand>MAD MAX</Brand>
+                    <Brand>{ car.brand }</Brand>
 
-                    <Name>Interceptor</Name>
+                    <Name>{ car.name }</Name>
                 </Info>
 
                 <Rent>
-                    <Period>AO DIA</Period>
+                    <Period>{ car.rent.period }</Period>
 
-                    <Price>R$ 120</Price>
+                    <Price>R$ {car.rent.price }</Price>
                 </Rent>
             </CarDescription>
 
             <Details>
-                <Acessories>
-                    <Accessory 
-                        name='380km/h'
-                        icon={speedSvg}
-                    />
+                <Accessories>
+                    {
+                        car.accessories.map(accessory => (
+                            <Accessory 
+                                key={accessory.type}
+                                name={accessory.name}
+                                icon={getAccessoryIcon(accessory.type)}
+                            />
 
-                    <Accessory 
-                        name='3.2s'
-                        icon={accelerationSvg}
-                    />
-
-                    <Accessory 
-                        name='800 HP'
-                        icon={forceSvg}
-                    />
-
-                    <Accessory 
-                        name='Gasolina'
-                        icon={gasolineSvg}
-                    />
-
-                    <Accessory 
-                        name='Manual'
-                        icon={exchangeSvg}
-                    />
-
-                    <Accessory 
-                        name='2 pessoas'
-                        icon={peopleSvg}
-                    />
-                </Acessories>
+                        ))
+                    }
+                </Accessories>
 
                 <RentalPeriod>
                     <CalendarIcon>
@@ -135,7 +137,7 @@ export function SchedulingDetails(){
 
                     <DateInfo>
                         <DateTitle>DE</DateTitle>
-                        <DateValue>18/06/2021</DateValue>
+                        <DateValue>{ rentalPeriod.start }</DateValue>
                     </DateInfo>
 
                     <Feather 
@@ -145,8 +147,8 @@ export function SchedulingDetails(){
                     />
 
                     <DateInfo>
-                        <DateTitle>DE</DateTitle>
-                        <DateValue>18/06/2021</DateValue>
+                        <DateTitle>ATÉ</DateTitle>
+                        <DateValue>{ rentalPeriod.end }</DateValue>
                     </DateInfo>
 
                 </RentalPeriod>
@@ -155,9 +157,9 @@ export function SchedulingDetails(){
                     <RentalPriceLabel>TOTAL</RentalPriceLabel>
 
                     <RentalPriceDetails>
-                        <RentalPriceQuota>R$ 580 x3 diárias</RentalPriceQuota>
+                        <RentalPriceQuota>{`R$ ${ car.rent.price } x${ dates.length } diárias`}</RentalPriceQuota>
                         
-                        <RentalPriceTotal>R$ 2.900</RentalPriceTotal>
+                        <RentalPriceTotal>R$ { rentTotal }</RentalPriceTotal>
                     </RentalPriceDetails>
                 </RentalPrice>
             </Details>

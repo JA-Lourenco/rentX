@@ -67,7 +67,7 @@ export const Details = styled.ScrollView.attrs({
     margin: 16px 16px 0;
 `
 
-export const Acessories = styled.View`
+export const Accessories = styled.View`
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
