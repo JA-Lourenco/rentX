@@ -12,11 +12,11 @@ interface BackButtonProps {
     onPress: () => void
 }
 
-export function BackButton({ color }: BackButtonProps){
+export function BackButton({ color, ...rest }: BackButtonProps){
     const theme = useTheme()
 
     return (
-        <Container>
+        <Container {...rest}>
                 <MaTerialIcons
                     name='keyboard-arrow-left'
                     size={24}
