@@ -1,18 +1,35 @@
 import React from 'react';
 
 import Feather from 'react-native-vector-icons/Feather'
-import { useTheme } from 'styled-components';
 import ptBR from './localeConfig';
+import { useTheme } from 'styled-components';
 
 import { 
     Calendar as CustomCalendar,
-    LocaleConfig
+    LocaleConfig,
+    CalendarProps
 } from 'react-native-calendars'
 
 LocaleConfig.locales['pt-br'] = ptBR
 LocaleConfig.defaultLocale = 'pt-br'
 
-export function Calendar(){
+export interface MarkedDateProps {
+    [date: string]: {
+      color: string;
+      textColor: string;
+      disabled?: boolean;
+      disableTouchEvents?: boolean;
+    };
+  }
+  
+export interface DayProps {
+    dateString: string;
+    day: number;
+    month: number;
+    timestamp: number;
+  }
+
+export function Calendar({ markedDates, onDayPress }: CalendarProps){
     const theme = useTheme()
 
     return (
@@ -47,6 +64,9 @@ export function Calendar(){
 
             firstDay={1}
             minDate={String(new Date())}
+            markingType='period'
+            markedDates={markedDates}
+            onDayPress={onDayPress}
         />
     )        
 }
