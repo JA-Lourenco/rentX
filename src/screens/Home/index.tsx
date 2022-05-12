@@ -19,18 +19,6 @@ import {
     CarList
 } from './styles'
 
-
-export interface CarData {
-    id: string
-    brand: string
-    name: string
-    rent: {
-        period: string,
-        price: number
-    },
-    thumbnail: string
-}
-
 export function Home(){
     const [cars, setCars] = useState<CarDTO[]>([])
     const [loading, setLoading] = useState(true)
