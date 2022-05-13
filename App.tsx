@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Routes } from './src/Routes/intex';
+import { Routes } from './src/Routes';
 
 import { ThemeProvider } from 'styled-components';
 
