@@ -4,11 +4,13 @@ import api from '../../services/api';
 
 import { CarCard } from '../../components/CarCard';
 import { BackButton } from '../../components/BackButton';
+import { Load } from '../../components/Load';
 
 import { FlatList, StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
 import { useNavigation } from '@react-navigation/native';
 import { CarDTO } from '../../dtos/CarDTO';
+import AntDesign from 'react-native-vector-icons/AntDesign'
 
 import {
     Container,
@@ -18,12 +20,19 @@ import {
     Content,
     Appointments,
     AppointmentsTitle,
-    AppointmentsQuantity
+    AppointmentsQuantity,
+    CarWrapper,
+    CarFooter,
+    CarFooterTitle,
+    CarFooterPeriod,
+    CarFooterDate
 } from './styles';
 
 interface CarProps {
     id: string
     user_id: string
+    startDate: string
+    endDate: string
     car: CarDTO
 }
 
@@ -78,22 +87,44 @@ export function MyCars(){
                 </Paragraph>
             </Header>
 
-            <Content>
-                <Appointments>
-                    <AppointmentsTitle>Agendamentos feitos</AppointmentsTitle>
-                    <AppointmentsQuantity>05</AppointmentsQuantity>
-                </Appointments>
+            {
+                loading ? <Load /> :
+            
+                <Content>
+                    <Appointments>
+                        <AppointmentsTitle>Agendamentos feitos</AppointmentsTitle>
+                        <AppointmentsQuantity>{cars.length}</AppointmentsQuantity>
+                    </Appointments>
 
-                <FlatList 
-                    data={cars}
-                    keyExtractor={item => item.id}
-                    showsVerticalScrollIndicator={false}
-                    renderItem={({ item }) => 
-                        <CarCard data={item.car}/>
-                    }
-                />
-            </Content>
+                    <FlatList 
+                        data={cars}
+                        keyExtractor={item => item.id}
+                        showsVerticalScrollIndicator={false}
+                        renderItem={({ item }) => 
+                            <CarWrapper>
+                                <CarCard data={item.car}/>
 
+                                <CarFooter>
+                                    <CarFooterTitle>Período</CarFooterTitle>
+
+                                    <CarFooterPeriod>
+                                        <CarFooterDate>{item.startDate}</CarFooterDate>
+
+                                        <AntDesign 
+                                            name='arrowright'
+                                            size={20}
+                                            color={theme.colors.title}
+                                            style={{ marginHorizontal: 10}}
+                                        />
+                                        
+                                        <CarFooterDate>{item.endDate}</CarFooterDate>
+                                    </CarFooterPeriod>
+                                </CarFooter>
+                            </CarWrapper>
+                        }
+                    />
+                </Content>
+            }
         </Container>
     )
 }
