@@ -9,16 +9,23 @@ interface ButtonProps {
     title: string
     color?: string
     onPress: () => void
+    disabled?: boolean
 }
 
 export function Button({
     title,
     color,
-    ...rest
+    onPress,
+    disabled
 }: ButtonProps){
 
     return (
-        <Container color={color} {...rest}>
+        <Container 
+            color={color} 
+            onPress={onPress}
+            disabled={disabled}
+            style={{ opacity: disabled === true ? .5 : 1 }}
+        >
             <Title>{title}</Title>
         </Container>
     )
