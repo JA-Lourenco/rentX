@@ -4,6 +4,8 @@ import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
 export const Container = styled.View`
     flex: 1;
+    align-items: center;
+    background-color: ${({ theme }) => theme.colors.background_primary};
 `;
 
 export const Header = styled.View`
@@ -26,4 +28,31 @@ export const Paragraph = styled.Text`
     font-family: ${({ theme }) => theme.fonts.secondary_400};
     color: ${({ theme }) => theme.colors.background_secondary};
     margin-top: 18px;
+`
+
+export const Content = styled.View`
+    flex: 1;
+    width: 100%;
+    padding: 0 16px;
+
+`
+
+export const Appointments = styled.View`
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+`
+
+export const AppointmentsTitle = styled.Text`
+    font-size: ${RFValue(15)}px;
+    font-family: ${({ theme }) => theme.fonts.primary_400};
+    color: ${({ theme }) => theme.colors.text};
+`
+
+export const AppointmentsQuantity = styled.Text`
+    font-size: ${RFValue(15)}px;
+    font-family: ${({ theme }) => theme.fonts.primary_500};
+    color: ${({ theme }) => theme.colors.title};
 `
