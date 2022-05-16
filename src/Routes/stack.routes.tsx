@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { Splash } from '../screens/Splash'
 import { Home } from '../screens/Home'
 import { CarDetails } from '../screens/CarDetails'
 import { Scheduling } from '../screens/Scheduling'
@@ -17,7 +18,13 @@ export function StackRoutes() {
             screenOptions={{
                 headerShown: false
             }}
+            initialRouteName='Splash'
         >
+            <Screen 
+                name='Splash'
+                component={Splash}
+            />
+
             <Screen 
                 name='Home'
                 component={Home}
