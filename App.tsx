@@ -4,6 +4,8 @@ import { Routes } from './src/Routes';
 
 import { ThemeProvider } from 'styled-components';
 
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
+
 import { 
   useFonts,
   Inter_400Regular,
@@ -34,7 +36,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={ theme }>
-      <Routes />
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <Routes />
+      </GestureHandlerRootView>
     </ThemeProvider>
   );
 }

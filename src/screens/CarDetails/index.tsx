@@ -96,13 +96,13 @@ export function CarDetails(){
                     />
                 </Header>
 
-                <Animated.View style={imageSliderStyleAnimation}>
-                    <CarImagesContainer>
+                <CarImagesContainer>
+                    <Animated.View style={imageSliderStyleAnimation}>
                         <ImageSlider 
                             imagesUrl={ car.photos } 
                         />
-                    </CarImagesContainer>
-                </Animated.View>
+                    </Animated.View>
+                </CarImagesContainer>
             </Animated.View>
 
             <CarDescription>
@@ -160,8 +160,6 @@ export function CarDetails(){
                     onPress={handleConfirmRental}
                 />
             </Footer>
-
-
         </Container>
     )
 }
