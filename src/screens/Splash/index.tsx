@@ -8,10 +8,12 @@ import Animated, {
     useAnimatedStyle,
     withTiming,
     interpolate,
-    Extrapolate
+    Extrapolate,
+    runOnJS
 } from 'react-native-reanimated';
 
 import { StatusBar } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import {
     Container
@@ -50,10 +52,20 @@ export function Splash(){
         }
     })
 
+    const navigation = useNavigation<any>()
+
+    function startApp() {
+        navigation.navigate('Home')
+    }
+
     useEffect(() => {
         logoAnimation.value = withTiming(
             50,
-            {duration: 2000}
+            {duration: 2000},
+            () => {
+              'worklet'
+              runOnJS(startApp)()
+            }
         )
     }, [])
 
