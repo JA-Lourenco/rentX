@@ -59,15 +59,6 @@ export const Price = styled.Text`
     color: ${({ theme }) => theme.colors.main};
 `
 
-export const Details = styled.ScrollView.attrs({
-    contentContainerStyles: {
-        alignItems: 'center',
-    },
-    showsVerticalScrollIndicator: false
-})`
-    margin: 16px 16px 0;
-`
-
 export const Accessories = styled.View`
     flex-direction: row;
     flex-wrap: wrap;

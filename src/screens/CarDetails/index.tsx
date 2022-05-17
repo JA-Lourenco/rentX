@@ -12,6 +12,14 @@ import { StatusBar } from 'react-native';
 
 import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
 
+import Animated, {
+    useSharedValue,
+    useAnimatedScrollHandler,
+    useAnimatedStyle,
+    interpolate,
+    Extrapolate
+} from 'react-native-reanimated'
+
 import {
     Container,
     Header,
@@ -23,7 +31,6 @@ import {
     Rent,
     Period,
     Price,
-    Details,
     Accessories,
     About,
     Footer
@@ -37,6 +44,32 @@ export function CarDetails(){
     const navigation = useNavigation<any>()
     const route = useRoute()
     const { car } = route.params as Params
+
+    const scrollY = useSharedValue(0)
+    const scrollHandler = useAnimatedScrollHandler(event => {
+        scrollY.value = event.contentOffset.y
+    })
+
+    const headerStyleAnimation = useAnimatedStyle(() => {
+        return {
+            height: interpolate(
+                scrollY.value,
+                [0, 200],
+                [235, 70],
+                Extrapolate.CLAMP
+            )
+        }
+    })
+
+    const imageSliderStyleAnimation = useAnimatedStyle(() => {
+        return {
+            opacity: interpolate(scrollY.value, 
+                [0, 150],
+                [1, 0],
+                Extrapolate.CLAMP    
+            )
+        }
+    })
 
     function handleConfirmRental() {
         navigation.navigate('Scheduling', { car })
@@ -54,17 +87,23 @@ export function CarDetails(){
                 translucent
             />
 
-            <Header>
-                <BackButton 
-                    onPress={handleGoBack}
-                />
-            </Header>
+            <Animated.View
+                style={[headerStyleAnimation]}
+            >
+                <Header>
+                    <BackButton 
+                        onPress={handleGoBack}
+                    />
+                </Header>
 
-            <CarImagesContainer>
-                <ImageSlider 
-                    imagesUrl={ car.photos } 
-                />
-            </CarImagesContainer>
+                <Animated.View style={imageSliderStyleAnimation}>
+                    <CarImagesContainer>
+                        <ImageSlider 
+                            imagesUrl={ car.photos } 
+                        />
+                    </CarImagesContainer>
+                </Animated.View>
+            </Animated.View>
 
             <CarDescription>
                 <Info>
@@ -80,7 +119,14 @@ export function CarDetails(){
                 </Rent>
             </CarDescription>
 
-            <Details>
+            <Animated.ScrollView
+                contentContainerStyle={{
+                    paddingHorizontal: 16,
+                }}
+                showsVerticalScrollIndicator={false}
+                onScroll={scrollHandler}
+                scrollEventThrottle={16}
+            >
                 <Accessories>
                     {
                         car.accessories.map(accessory => 
@@ -93,8 +139,20 @@ export function CarDetails(){
                     }
                 </Accessories>
 
-                <About>{ car.about }</About>
-            </Details>
+                <About>
+                    { car.about }
+                    { car.about }
+                    { car.about }
+                    { car.about }
+                    { car.about }
+                    { car.about }
+                    { car.about }
+                    { car.about }
+                    { car.about }
+                    { car.about }
+                    { car.about }
+                </About>
+            </Animated.ScrollView>
 
             <Footer>
                 <Button 
