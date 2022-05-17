@@ -6,7 +6,7 @@ import { CarDTO } from '../../dtos/CarDTO'
 import { CarCard } from '../../components/CarCard';
 import { Load } from '../../components/Load';
 
-import { StatusBar, TouchableOpacity, StyleSheet } from 'react-native';
+import { StatusBar, TouchableOpacity, StyleSheet, BackHandler } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useTheme } from 'styled-components';
@@ -90,6 +90,12 @@ export function Home(){
         fetchCars()
     }, [])
 
+    useEffect(() => {
+        BackHandler.addEventListener('hardwareBackPress', () => {
+            return true
+        })
+    })
+
     return (
         <Container>
             <StatusBar 
@@ -104,10 +110,13 @@ export function Home(){
                         width={RFValue(108)} 
                         height={RFValue(12)} 
                     />
+                    {
+                        !loading &&
+                        <CarAmount>
+                            Total de {cars.length} carros
+                        </CarAmount>
 
-                    <CarAmount>
-                        Total de {cars.length} carros
-                    </CarAmount>
+                    }
                 </HeaderContent>
             </Header>
 
