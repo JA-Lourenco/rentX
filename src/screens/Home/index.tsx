@@ -4,15 +4,15 @@ import api from '../../services/api'
 import { CarDTO } from '../../dtos/CarDTO'
 
 import { CarCard } from '../../components/CarCard';
-import { Load } from '../../components/Load';
+import { LoadAnimated } from '../../components/LoadAnimated';
 
 import { StatusBar, TouchableOpacity, StyleSheet, BackHandler } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useTheme } from 'styled-components';
-import LogoSvg from '../../assets/logo.svg'
-import Ionicons from 'react-native-vector-icons/Ionicons'
 import { PanGestureHandler } from 'react-native-gesture-handler'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import LogoSvg from '../../assets/logo.svg'
 
 import Animated, {
     useSharedValue,
@@ -121,7 +121,7 @@ export function Home(){
             </Header>
 
             {
-                loading ? <Load /> :
+                loading ? <LoadAnimated /> :
 
                 <CarList 
                     data={cars}

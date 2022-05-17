@@ -4,7 +4,7 @@ import api from '../../services/api';
 
 import { CarCard } from '../../components/CarCard';
 import { BackButton } from '../../components/BackButton';
-import { Load } from '../../components/Load';
+import { LoadAnimated } from '../../components/LoadAnimated';
 
 import { FlatList, StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
@@ -88,7 +88,7 @@ export function MyCars(){
             </Header>
 
             {
-                loading ? <Load /> :
+                loading ? <LoadAnimated /> :
             
                 <Content>
                     <Appointments>
